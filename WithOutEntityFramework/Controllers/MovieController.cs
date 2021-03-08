@@ -127,18 +127,12 @@ namespace WithOutEntityFramework.Controllers
         {
             
             MovieViewModel movieViewModel = new MovieViewModel();
-            /*
+            
             using (OdbcConnection connection = new OdbcConnection(_configuration.GetConnectionString("OdbcCon")))
             {
                 DataTable dtb2 = new DataTable();
                 connection.Open();
-                OdbcDataAdapter dat = new OdbcDataAdapter("MovieViewAll", connection);
-                dat.SelectCommand.CommandType = CommandType.StoredProcedure;
-                
-                OdbcCommand ODBCCommand = new OdbcCommand("{call MovieAddOrEdit (?,?,?)}", connection);
-                ODBCCommand.CommandType = CommandType.StoredProcedure;
-                ODBCCommand.Parameters.AddWithValue("@MovieId", movieViewModel.MovieId);
-
+                OdbcDataAdapter dat = new OdbcDataAdapter("select * from Movies where MovieId = " + id, connection);
                 dat.Fill(dtb2);
 
                 if (dtb2.Rows.Count == 1)
@@ -150,8 +144,8 @@ namespace WithOutEntityFramework.Controllers
                 }
                 return movieViewModel;
 
-            }*/
-
+            }
+            /*
               using (SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("DevConnection")))
             {
                 DataTable dtbl = new DataTable();
@@ -168,7 +162,7 @@ namespace WithOutEntityFramework.Controllers
                     movieViewModel.Director = dtbl.Rows[0]["Director"].ToString();
                 }
                 return movieViewModel;
-            }
+            }*/
             
         }
 
