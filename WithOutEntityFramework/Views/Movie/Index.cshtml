@@ -1,0 +1,45 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewData["Title"] = "Movies List";
+}
+
+<div class="jumbotron jumbotron-fluid text-center">
+    <h1>@ViewData["Title"]</h1>
+    </div>
+
+<hr />
+
+
+    <table class="table table-dark align-items-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Director
+                </th>
+                <th>
+                    <a class="btn btn-light align-content-center" asp-action="AddOrEdit">Create New</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Rows.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model.Rows[i]["Title"]
+                    </td>
+                    <td>
+                        @Model.Rows[i]["Director"]
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-success" data-mdb-ripple-color="dark" asp-action="AddOrEdit" asp-route-id="@Model.Rows[i]["MovieId"]">Edit</a> |
+                        <a class="btn btn-outline-danger" data-mdb-ripple-color="dark" asp-action="Delete" asp-route-id="@Model.Rows[i]["MovieId"]">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
